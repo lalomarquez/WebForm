@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,10 +39,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp">
       <HintPath>..\..\..\..\..\..\Users\emarquez\Desktop\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -51,6 +64,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -59,8 +75,46 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Home.aspx" />
+    <Content Include="Images\favicon.ico" />
+    <Content Include="Scripts\js\foundation.min.js" />
+    <Content Include="Scripts\js\foundation\foundation.abide.js" />
+    <Content Include="Scripts\js\foundation\foundation.accordion.js" />
+    <Content Include="Scripts\js\foundation\foundation.alert.js" />
+    <Content Include="Scripts\js\foundation\foundation.clearing.js" />
+    <Content Include="Scripts\js\foundation\foundation.dropdown.js" />
+    <Content Include="Scripts\js\foundation\foundation.equalizer.js" />
+    <Content Include="Scripts\js\foundation\foundation.interchange.js" />
+    <Content Include="Scripts\js\foundation\foundation.joyride.js" />
+    <Content Include="Scripts\js\foundation\foundation.js" />
+    <Content Include="Scripts\js\foundation\foundation.magellan.js" />
+    <Content Include="Scripts\js\foundation\foundation.offcanvas.js" />
+    <Content Include="Scripts\js\foundation\foundation.orbit.js" />
+    <Content Include="Scripts\js\foundation\foundation.reveal.js" />
+    <Content Include="Scripts\js\foundation\foundation.slider.js" />
+    <Content Include="Scripts\js\foundation\foundation.tab.js" />
+    <Content Include="Scripts\js\foundation\foundation.tooltip.js" />
+    <Content Include="Scripts\js\foundation\foundation.topbar.js" />
+    <Content Include="Scripts\js\jquery-1.11.1.js" />
+    <Content Include="Scripts\js\vendor\fastclick.js" />
+    <Content Include="Scripts\js\vendor\jquery.cookie.js" />
+    <Content Include="Scripts\js\vendor\jquery.js" />
+    <Content Include="Scripts\js\vendor\modernizr.js" />
+    <Content Include="Scripts\js\vendor\placeholder.js" />
+    <Content Include="Service References\WS\ASP.NET.WebForm.WS.FoodResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WS\ASP.NET.WebForm.WS.HelloWorldResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Index.Master" />
+    <Content Include="packages.config" />
+    <None Include="Service References\WS\WSBeginners.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -69,28 +123,76 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="WS\ConsumingWS.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\Desert.jpg" />
-    <Content Include="SendEmailPDF.aspx" />
+    <Content Include="Codes\SendEmailPDF.aspx" />
+    <None Include="Service References\WS\configuration91.svcinfo" />
+    <None Include="Service References\WS\configuration.svcinfo" />
+    <None Include="Service References\WS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Content\foundation.css" />
+    <Content Include="Content\foundation.min.css" />
+    <Content Include="Content\normalize.css" />
     <Content Include="Web.config" />
+    <Content Include="WSBeginners.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="codeSnippets.cs" />
+    <Compile Include="Clases\codeSnippets.cs" />
+    <Compile Include="WS\ConsumingWS.aspx.cs">
+      <DependentUpon>ConsumingWS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WS\ConsumingWS.aspx.designer.cs">
+      <DependentUpon>ConsumingWS.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Index.Master.cs">
+      <DependentUpon>Index.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.Master.designer.cs">
+      <DependentUpon>Index.Master</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SendEmailPDF.aspx.cs">
+    <Compile Include="Codes\SendEmailPDF.aspx.cs">
       <DependentUpon>SendEmailPDF.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SendEmailPDF.aspx.designer.cs">
+    <Compile Include="Codes\SendEmailPDF.aspx.designer.cs">
       <DependentUpon>SendEmailPDF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="WSBeginners.asmx.cs">
+      <DependentUpon>WSBeginners.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="fonts\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\WS\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

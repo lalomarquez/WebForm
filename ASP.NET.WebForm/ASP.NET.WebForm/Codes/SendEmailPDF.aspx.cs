@@ -71,7 +71,7 @@ namespace ASP.NET.WebForm
                 SmtpClient SmtpMail = new SmtpClient();
                 SmtpMail.Host = "smtp.gmail.com";//name or IP-Address of Host used for SMTP transactions  
                 SmtpMail.Port = 587;//Port for sending the mail  
-                SmtpMail.Credentials = new System.Net.NetworkCredential("email@gmail.com", "pwd");//username/password of network, if apply  
+                SmtpMail.Credentials = new System.Net.NetworkCredential("@gmail.com", "");//username/password of network, if apply  
                 SmtpMail.DeliveryMethod = SmtpDeliveryMethod.Network;
                 SmtpMail.EnableSsl = true;
                 SmtpMail.ServicePoint.MaxIdleTime = 0;

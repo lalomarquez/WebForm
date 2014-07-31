@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NET.WebForm", "ASP.NET.WebForm\ASP.NET.WebForm.csproj", "{D3ACD83C-928B-4B89-861E-BBDF29ABA5FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BussinesObject", "BussinesObject\BussinesObject.csproj", "{47E553B7-4172-4036-BFC6-8C39006E5E3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D3ACD83C-928B-4B89-861E-BBDF29ABA5FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3ACD83C-928B-4B89-861E-BBDF29ABA5FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3ACD83C-928B-4B89-861E-BBDF29ABA5FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47E553B7-4172-4036-BFC6-8C39006E5E3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47E553B7-4172-4036-BFC6-8C39006E5E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47E553B7-4172-4036-BFC6-8C39006E5E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47E553B7-4172-4036-BFC6-8C39006E5E3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
