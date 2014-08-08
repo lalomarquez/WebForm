@@ -31,13 +31,13 @@ namespace ASP.NET.WebForm {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// linksendEmail control.
+        /// linkSendEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linksendEmail;
+        protected global::System.Web.UI.WebControls.LinkButton linkSendEmail;
         
         /// <summary>
         /// linkConsumingWS control.
@@ -47,6 +47,24 @@ namespace ASP.NET.WebForm {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton linkConsumingWS;
+        
+        /// <summary>
+        /// linkDB10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkDB10;
+        
+        /// <summary>
+        /// linkUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton linkUsers;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

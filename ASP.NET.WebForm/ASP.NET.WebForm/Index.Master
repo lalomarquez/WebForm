@@ -24,25 +24,11 @@
     <link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'/>
 
     <style type="text/css">
-        h5 {
+        b {
             font: 400 20px/1 'Gafata', Helvetica, sans-serif;		
         }
     </style>
-
-    <!-- JS -->
-    <!-- Load core jQuery from Google CDN -->
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Load core jQuery from a local copy if loading from Google fails -->
-    <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="<%=ResolveClientUrl("~/Scripts/js/jquery-1.11.1.js")%>"><\/script>')</script>
-
-    <!-- scripts for elements UI of jquery from CDN-->
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>    
-
-    <!-- Load script Foundation -->
-    <script src="Scripts/js/foundation.min.js"></script>
-    <script src="Scripts/js/foundation/foundation.dropdown.js"></script>
-    <script src="Scripts/js/foundation/foundation.topbar.js"></script>
-    
+        
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -51,13 +37,14 @@
     <form id="form1" runat="server">
         <nav class="top-bar" data-topbar>
             <ul class="title-area">
-
+                
                 <li class="name">
                     <h1>
                         <a href="<%=ResolveClientUrl("~/Home.aspx")%>">Top Bar Title</a>
                     </h1>
                 </li>
                 <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+                    
             </ul>
 
             <section class="top-bar-section">
@@ -67,35 +54,42 @@
                     <li class="has-dropdown">
                         <a href="#">Codes </a>
                         <ul class="dropdown">
-                            <li>
-                                <label>Section Name</label></li>
+
+                            <li><label>Section Name</label></li>
                             <li class="has-dropdown">
-                                <a href="#" class="">Level 1</a>
+                                <a href="#" class="">Codes CSharp</a>
                                 <ul class="dropdown">
-                                    <li><asp:LinkButton ID="linksendEmail" runat="server" OnClick="linkSendEmail_Click" CausesValidation="False">Send Email with PDF</asp:LinkButton></li>    
-                                    <li><a href="#">Dropdown Options</a></li>
-                                    <li><a href="#">Level 2</a></li>
-                                    <li><asp:LinkButton ID="linkConsumingWS" runat="server" OnClick="linkConsumingWS_Click" CausesValidation="False">Consuming WS</asp:LinkButton></li>
-                                    <li><a href="#">Subdropdown Option</a></li>                                    
+                                    <li><asp:LinkButton ID="linkSendEmail" runat="server" OnClick="linkSendEmail_Click" CausesValidation="False">Send Email with PDF</asp:LinkButton></li>    
+                                    <li><a href="#">Other</a></li>                                                                        
                                 </ul>
                             </li>
-                            <li><a href="#">Dropdown Option</a></li>
-                            <li><a href="#">Dropdown Option</a></li>
+
                             <li class="divider"></li>
-                            <li>
-                                <label>Section Name</label></li>
-                            <li><a href="#">Dropdown Option</a></li>
-                            <li><a href="#">Dropdown Option</a></li>                            
-                            <li class="divider"></li>                            
+
+                            <li><label>Section Name</label></li>
+                            <li class="has-dropdown">
+                                <a href="#">Codes WS</a>
+                                <ul class="dropdown">                                                                    
+                                    <li><asp:LinkButton ID="linkConsumingWS" runat="server" OnClick="linkConsumingWS_Click" CausesValidation="False">Consuming WS</asp:LinkButton></li>                                      
+                                    <li><a href="#">Other</a></li>                                                                        
+                                    <li class="divider"></li>
+                                </ul>
+                            </li> 
+                                                       
                         </ul>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="#">VB.Net</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">VB.Net</a>
+                        <ul class="dropdown">                            
+                            <li><asp:LinkButton ID="linkDB10" runat="server" OnClick="linkDB10_Click" CausesValidation="False">DVB10</asp:LinkButton></li>
+                        </ul>
+                    </li>
                     <li class="divider"></li>
                     <li class="has-dropdown">
                         <a href="#">Admin</a>
                         <ul class="dropdown">                                                        
-                            <li><a href="#">Dropdown Option</a></li>
+                            <li><asp:LinkButton ID="linkUsers" runat="server" OnClick="linkUsers_Click" CausesValidation="False">Usuarios</asp:LinkButton></li>
                             <li><a href="#">Dropdown Option</a></li>
                             <li class="divider"></li>
                             <li><a href="#">See all →</a></li>
@@ -134,11 +128,21 @@
         </footer>
 
     </form>
-        <script type="text/javascript">
-            $(function () {
-                $(document).foundation();
 
-            })
+    <!-- LOAD .js -->
+    <!-- Load core jQuery from Google CDN -->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Load core jQuery from a local copy if loading from Google fails -->
+    <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="<%=ResolveClientUrl("~/Scripts/js/jquery-1.11.1.js")%>"><\/script>')</script>
+
+    <!-- scripts for elements UI of jquery from CDN-->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>    
+
+    <!-- Load script Foundation -->
+    <script src="<%=ResolveClientUrl("~/Scripts/js/foundation.min.js")%>" type="text/javascript"></script>
+    <script src="<%=ResolveClientUrl("~/Scripts/js/vendor/modernizr.js")%>" type="text/javascript"></script>
+    <script type="text/javascript">            
+            $(document).foundation();            
     </script>
 </body>
 </html>

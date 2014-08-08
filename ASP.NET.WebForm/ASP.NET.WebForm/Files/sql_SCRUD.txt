@@ -1,0 +1,91 @@
+ALTER PROCEDURE SP_SearchRegisterUser
+           @Name nvarchar(30)--,
+           --@LastName nvarchar(50)--,
+           --@Email nvarchar(50),
+           --@Company nvarchar(50),
+           --@Date nvarchar(20),
+           --@Status nvarchar(1)
+AS
+BEGIN
+
+	SELECT * FROM dbo.SCRUD_RegisterUser
+			 WHERE (Name LIKE ''+@Name+'%') 
+				--OR 
+				   --(LastName LIKE ''+@LastName+'%') 
+			--OR
+			--	   (Company LIKE '%'+@Company+'%')
+END
+--------------------------------------------------	
+EXEC SP_SearchRegisterUser 'L'
+--------------------------------------------------	
+Create PROCEDURE SP_InsertRegisterUser
+           @Name nvarchar(30),
+           @LastName nvarchar(50),
+           @Email nvarchar(50),
+           @Company nvarchar(50),
+           @Date nvarchar(20),
+           @Status nvarchar(1)
+AS   
+BEGIN        
+		INSERT INTO [Pruebas].[dbo].[SCRUD_RegisterUser]
+				   ([Name]
+				   ,[LastName]
+				   ,[Email]
+				   ,[Company]
+				   ,[Date]
+				   ,[Status])
+			 VALUES(
+				   @Name,
+				   @LastName,
+				   @Email,
+				   @Company,
+				   @Date,
+				   @Status)
+END
+--------------------------------------------------
+EXEC SP_InsertRegisterUser 'Lugano','MRT','@','TELMEX','01012001','9'
+--------------------------------------------------		
+ALTER PROCEDURE SP_FetchRegisterUser
+AS
+BEGIN
+	SELECT * FROM dbo.SCRUD_RegisterUser
+END
+--------------------------------------------------
+EXEC SP_FetchRegisterUser
+--------------------------------------------------
+ALTER PROCEDURE SP_UpdateRegisterUser
+		   @ID int,
+	       @Name nvarchar(30),
+           @LastName nvarchar(50),
+           @Email nvarchar(50),
+           @Company nvarchar(50),
+           @Date nvarchar(20),
+           @Status nvarchar(1)
+AS
+BEGIN
+            UPDATE [Pruebas].[dbo].[SCRUD_RegisterUser]
+            SET
+				[Name] = @Name,
+				[LastName] = @LastName,
+				[Email] = @Email,
+				[Company] = @Company,
+				[Date] = @Date,
+				[Status] = @Status
+            WHERE [ID_User] = @ID
+END
+--------------------------------------------------
+EXEC SP_UpdateRegisterUser @ID = 1, @Name = 'Antonio',@LastName = 'De la Vegga', @Email ='@', @Company = 'telcel', @Date ='45', @Status ='9'
+--------------------------------------------------
+ALTER PROCEDURE SP_DeleteRegisterUser
+	(
+		@ID int
+	)
+AS
+BEGIN
+	/* SET NOCOUNT ON */ 
+	Delete SCRUD_RegisterUser WHERE ID_User = @ID
+	RETURN
+END	
+--------------------------------------------------
+EXEC SP_DeleteRegisterUser 10
+--------------------------------------------------

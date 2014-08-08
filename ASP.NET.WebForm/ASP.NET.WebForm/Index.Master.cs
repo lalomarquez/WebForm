@@ -15,12 +15,20 @@ namespace ASP.NET.WebForm
         }
         protected void linkSendEmail_Click(object sender, EventArgs e)
         {
-            Server.Transfer("/Codes/SendEmailPDF.aspx");
+            Server.Transfer("/CodesCSharp/SendEmailPDF.aspx");
         }
 
         protected void linkConsumingWS_Click(object sender, EventArgs e)
         {
-            Server.Transfer("/WS/ConsumingWS.aspx");
-        }        
+            Server.Transfer("/CodesWS/ConsumingWS.aspx");
+        }
+        protected void linkDB10_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("/CodesVB/DB10Digit.aspx");
+        }
+        protected void linkUsers_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("/CodeAdmin/Users.aspx");
+        }
     }
 }

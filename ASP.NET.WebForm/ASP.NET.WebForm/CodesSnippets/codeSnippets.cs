@@ -16,6 +16,9 @@ namespace ASP.NET.WebForm
             Type cstype = obj.GetType();
             ClientScriptManager cs = pg.ClientScript;
             cs.RegisterClientScriptBlock(cstype, s, s.ToString());
+            //other form
+            //Response.Write("Failed: "+ex);
+            //Response.Write(@"<script language='javascript'>alert('Update is successful.')</script>");
         }
         public void ClearTextBox(ControlCollection ctrls)
         {

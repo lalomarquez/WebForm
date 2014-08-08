@@ -83,9 +83,7 @@ namespace ASP.NET.WebForm
                 MessageBox.Show("Email has been sent");
             }
             catch (Exception ex)
-            { //Response.Write("Failed: "+ex);
-              //Response.Write(@"<script language='javascript'>alert('Update is successful.')</script>");
-              //alert.MsgBox("error", Page, this);  
+            {              
                 MessageBox.Show(Convert.ToString(ex));                                 
             }
             CS.ClearTextBox(Page.Controls);

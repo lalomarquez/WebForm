@@ -80,6 +80,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CodeAdmin\Users.aspx" />
+    <Content Include="Files\sql_SCRUD.txt" />
     <Content Include="Home.aspx" />
     <Content Include="Images\favicon.ico" />
     <Content Include="Scripts\js\foundation.min.js" />
@@ -123,10 +125,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="WS\ConsumingWS.aspx" />
+    <Content Include="CodesVB\DB10Digit.aspx" />
+    <Content Include="CodesWS\ConsumingWS.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\Desert.jpg" />
-    <Content Include="Codes\SendEmailPDF.aspx" />
+    <Content Include="CodesCSharp\SendEmailPDF.aspx" />
     <None Include="Service References\WS\configuration91.svcinfo" />
     <None Include="Service References\WS\configuration.svcinfo" />
     <None Include="Service References\WS\Reference.svcmap">
@@ -136,16 +139,32 @@
     <Content Include="Content\foundation.css" />
     <Content Include="Content\foundation.min.css" />
     <Content Include="Content\normalize.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="WSBeginners.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\codeSnippets.cs" />
-    <Compile Include="WS\ConsumingWS.aspx.cs">
+    <Compile Include="CodeAdmin\Users.aspx.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CodeAdmin\Users.aspx.designer.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CodesSnippets\codeSnippets.cs" />
+    <Compile Include="CodesVB\DB10Digit.aspx.cs">
+      <DependentUpon>DB10Digit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CodesVB\DB10Digit.aspx.designer.cs">
+      <DependentUpon>DB10Digit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CodesWS\ConsumingWS.aspx.cs">
       <DependentUpon>ConsumingWS.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WS\ConsumingWS.aspx.designer.cs">
+    <Compile Include="CodesWS\ConsumingWS.aspx.designer.cs">
       <DependentUpon>ConsumingWS.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
@@ -166,11 +185,11 @@
       <DependentUpon>Index.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Codes\SendEmailPDF.aspx.cs">
+    <Compile Include="CodesCSharp\SendEmailPDF.aspx.cs">
       <DependentUpon>SendEmailPDF.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Codes\SendEmailPDF.aspx.designer.cs">
+    <Compile Include="CodesCSharp\SendEmailPDF.aspx.designer.cs">
       <DependentUpon>SendEmailPDF.aspx</DependentUpon>
     </Compile>
     <Compile Include="Service References\WS\Reference.cs">
@@ -193,6 +212,24 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\WS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessAccessLayer\BusinessAccessLayer.csproj">
+      <Project>{ac1d19bc-a245-496a-ad2e-1696d9784a9d}</Project>
+      <Name>BusinessAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BussinesObject\BussinesObject.csproj">
+      <Project>{47e553b7-4172-4036-bfc6-8c39006e5e3c}</Project>
+      <Name>BussinesObject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{975178ed-9c29-487f-97d5-e1eed7c5801d}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VBDigitVer\VBDigitVer.vbproj">
+      <Project>{3510996f-0b30-40d1-89b7-3f88de8e7c78}</Project>
+      <Name>VBDigitVer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
