@@ -26,9 +26,17 @@ namespace ASP.NET.WebForm
         {
             Server.Transfer("/CodesVB/DB10Digit.aspx");
         }
+        protected void linkTableUser_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("/CodeAdmin/TablesUser.aspx");
+        }
         protected void linkUsers_Click(object sender, EventArgs e)
         {
             Server.Transfer("/CodeAdmin/Users.aspx");
         }
+        protected void linkUsersAjax_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("/CodeAdmin/UserAjax.aspx");            
+        }        
     }
 }

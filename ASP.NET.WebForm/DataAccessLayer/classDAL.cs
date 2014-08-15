@@ -111,15 +111,15 @@ namespace DataAccessLayer
         {
             SqlConnection Conn = ReturnConn();
             SqlCommand Cmd = CreateCmd(NameSP, Conn);
-            SqlDataAdapter Dtr = new SqlDataAdapter();
-            DataSet Ds = new DataSet();
-            Dtr.SelectCommand = Cmd;
-            Dtr.Fill(Ds);
+            SqlDataAdapter adp = new SqlDataAdapter();
+            DataSet ds = new DataSet();
+            adp.SelectCommand = Cmd;
+            adp.Fill(ds);
             Cmd.Dispose();
             //DataTable Dt = Ds.Tables[0];
             Conn.Close();
 
-            return Ds;
+            return ds;
         }
         public static SqlDataReader RunProcGetReader(string procName, SqlParameter[] prams)
         {

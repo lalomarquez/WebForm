@@ -85,8 +85,8 @@ namespace ASP.NET.WebForm
             catch (Exception ex)
             {              
                 MessageBox.Show(Convert.ToString(ex));                                 
-            }
-            CS.ClearTextBox(Page.Controls);
+            }            
+            codeSnippets.ClearTextBox(Page.Controls);
         }
     }
 }

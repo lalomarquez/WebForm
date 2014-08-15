@@ -7,90 +7,108 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ASP.NET.WebForm {
+namespace ASP.NET.WebForm.CodeAdmin {
     
     
-    public partial class Index {
+    public partial class UserAjax {
         
         /// <summary>
-        /// head control.
+        /// textSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.TextBox textSearch;
         
         /// <summary>
-        /// form1 control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
-        /// linkSendEmail control.
+        /// GridviewSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkSendEmail;
+        protected global::System.Web.UI.WebControls.GridView GridviewSearch;
         
         /// <summary>
-        /// linkConsumingWS control.
+        /// textName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkConsumingWS;
+        protected global::System.Web.UI.WebControls.TextBox textName;
         
         /// <summary>
-        /// linkDB10 control.
+        /// textLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkDB10;
+        protected global::System.Web.UI.WebControls.TextBox textLastName;
         
         /// <summary>
-        /// linkTableUser control.
+        /// textEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkTableUser;
+        protected global::System.Web.UI.WebControls.TextBox textEmail;
         
         /// <summary>
-        /// linkUsers control.
+        /// textCompany control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkUsers;
+        protected global::System.Web.UI.WebControls.TextBox textCompany;
         
         /// <summary>
-        /// linkUsersAjax control.
+        /// textDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton linkUsersAjax;
+        protected global::System.Web.UI.WebControls.TextBox textDate;
         
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// DDLStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.DropDownList DDLStatus;
+        
+        /// <summary>
+        /// btnCreateNew control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreateNew;
+        
+        /// <summary>
+        /// GridViewFourTier control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewFourTier;
     }
 }

@@ -89,3 +89,13 @@ END
 --------------------------------------------------
 EXEC SP_DeleteRegisterUser 10
 --------------------------------------------------
+CREATE PROCEDURE SP_GetUsersByID
+	 @ID int
+AS
+BEGIN
+	SELECT * FROM dbo.SCRUD_RegisterUser
+	WHERE ID_User = @ID
+END
+--------------------------------------------------
+EXEC SP_GetUsersByID 71
+--------------------------------------------------

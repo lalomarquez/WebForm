@@ -170,6 +170,42 @@ namespace DataAccessLayer
                         conn.Dispose();
                     }
                 }                
-            }    
+            }
+
+            //[WebMethod]
+            //public int DeleteDALAjax(BO.BO_User user)
+            //{
+            //    int result = 0;
+            //    try
+            //    {
+            //        cmd = new SqlCommand("[SP_DeleteRegisterUser]", conn);
+            //        cmd.CommandType = CommandType.StoredProcedure;
+            //        cmd.Parameters.AddWithValue("@ID", SqlDbType.Int).Value = user.ID_User;
+
+            //        if (conn.State == ConnectionState.Closed)
+            //            conn.Open();
+
+            //        result = cmd.ExecuteNonQuery();
+            //        cmd.Dispose();
+
+            //        if (result > 0)
+            //            return result;
+            //        else
+            //            return 0;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        throw ex;
+            //    }
+            //    finally
+            //    {
+            //        if (conn.State != ConnectionState.Closed)
+            //        {
+            //            conn.Close();
+            //            conn.Dispose();
+            //        }
+            //    }
+            
+            //}
     }
 }

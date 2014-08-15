@@ -80,10 +80,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CodeAdmin\TablesUser.aspx" />
+    <Content Include="CodeAdmin\UserAjax.aspx" />
     <Content Include="CodeAdmin\Users.aspx" />
+    <Content Include="Content\datepicker.css" />
     <Content Include="Files\sql_SCRUD.txt" />
     <Content Include="Home.aspx" />
     <Content Include="Images\favicon.ico" />
+    <Content Include="Scripts\js\datepicker.js" />
     <Content Include="Scripts\js\foundation.min.js" />
     <Content Include="Scripts\js\foundation\foundation.abide.js" />
     <Content Include="Scripts\js\foundation\foundation.accordion.js" />
@@ -103,6 +107,8 @@
     <Content Include="Scripts\js\foundation\foundation.tooltip.js" />
     <Content Include="Scripts\js\foundation\foundation.topbar.js" />
     <Content Include="Scripts\js\jquery-1.11.1.js" />
+    <Content Include="Scripts\js\jquery.validate.js" />
+    <Content Include="Scripts\js\jquery.validation.net.webforms.js" />
     <Content Include="Scripts\js\vendor\fastclick.js" />
     <Content Include="Scripts\js\vendor\jquery.cookie.js" />
     <Content Include="Scripts\js\vendor\jquery.js" />
@@ -145,6 +151,20 @@
     <Content Include="WSBeginners.asmx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeAdmin\TablesUser.aspx.cs">
+      <DependentUpon>TablesUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CodeAdmin\TablesUser.aspx.designer.cs">
+      <DependentUpon>TablesUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CodeAdmin\UserAjax.aspx.cs">
+      <DependentUpon>UserAjax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CodeAdmin\UserAjax.aspx.designer.cs">
+      <DependentUpon>UserAjax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CodeAdmin\Users.aspx.cs">
       <DependentUpon>Users.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
