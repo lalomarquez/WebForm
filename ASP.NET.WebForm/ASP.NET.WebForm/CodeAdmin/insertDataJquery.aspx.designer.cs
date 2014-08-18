@@ -10,52 +10,7 @@
 namespace ASP.NET.WebForm.CodeAdmin {
     
     
-    public partial class UserAjax {
-        
-        /// <summary>
-        /// textSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox textSearch;
-        
-        /// <summary>
-        /// btnSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
-        
-        /// <summary>
-        /// GridviewSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridviewSearch;
-        
-        /// <summary>
-        /// divMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMsg;
-        
-        /// <summary>
-        /// lblMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMsg;
+    public partial class insertDataJquery {
         
         /// <summary>
         /// textName control.
@@ -121,12 +76,21 @@ namespace ASP.NET.WebForm.CodeAdmin {
         protected global::System.Web.UI.WebControls.Button btnCreateNew;
         
         /// <summary>
-        /// GridViewFourTier control.
+        /// txtContactName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewFourTier;
+        protected global::System.Web.UI.WebControls.TextBox txtContactName;
+        
+        /// <summary>
+        /// txtContactNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtContactNo;
     }
 }

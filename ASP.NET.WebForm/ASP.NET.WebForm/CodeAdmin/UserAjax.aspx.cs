@@ -19,6 +19,7 @@ namespace ASP.NET.WebForm.CodeAdmin
         protected void Page_Load(object sender, EventArgs e)
         {
             FillGridWithFourTier();
+            divMsg.Visible = false;
         }
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -67,7 +68,9 @@ namespace ASP.NET.WebForm.CodeAdmin
                 if (create > 0)
                 {                    
                     codeSnippets.ClearTextBox(Page.Controls);
-                    Response.Write(@"<script language='javascript'>alert('New record inserted successfully')</script>");                                        
+                    //Response.Write(@"<script language='javascript'>alert('New record inserted successfully')</script>");
+                    divMsg.Visible = true;
+                    lblMsg.Text = "<b>Usuario ingresado correctamente!!</b>";
                 }
                 else
                     Response.Write(@"<script language='javascript'>alert('Cannot record inserted.')</script>");                                    

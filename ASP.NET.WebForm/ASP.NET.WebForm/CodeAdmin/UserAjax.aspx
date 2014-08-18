@@ -6,10 +6,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style type="text/css">
     </style>
-    <%--<script src="../Scripts/js/datepicker.js"></script>
-    <link href="../Content/datepicker.css" rel="stylesheet" />--%>
+    <script src="../Scripts/js/datepicker.js"></script>
+    <link href="../Content/datepicker.css" rel="stylesheet" />
     <script type="text/javascript">
-        $(document).on('ready', function () {
+        $(document).on('ready', function () {            
+            setTimeout(function(){ 
+                $('#divOK').fadeOut('slow') 
+            }, 3000);
+
             //datepicker
             $("#datepicker").datepicker({
                 dateFormat: "dd.mm.yyyy",
@@ -118,6 +122,11 @@
 
     <div class="row">        
         <div class="large-5 columns">
+<%--            <div id="BodyField">
+                <div class="video-field-new">
+                    <h1>hola mundo</h1>
+                </div>
+            </div>--%>
             <fieldset class="form panel callout radius">
                 <legend>Search Users</legend>
                 <div class="row collapse">
@@ -141,6 +150,12 @@
 
         <div class="large-12 columns"></div>
         <div class="large-5 columns">
+            <div id="divOK" >                
+                <div runat="server" id="divMsg" data-alert class="alert-box success radius">   
+                    <asp:Label ID="lblMsg" Text="" runat="server" />
+                    <a href="#" class="close">&times;</a>
+                </div>          
+            </div>
             <fieldset class="form panel callout radius">
                 <legend>Create User</legend>
                 <div class="row collapse">
@@ -190,7 +205,7 @@
                     </div>
                 </div>
                 <asp:Button ID="btnCreateNew" class="small radius button submit" Text="Save" runat="server" OnClick="btnCreateNew_Click" />
-            </fieldset>            
+            </fieldset>  
         </div>
 
         <div class="large-7 columns">
@@ -201,13 +216,13 @@
         </div>
         <%--<div class="large-12 columns"></div>--%>
 
-        <div class="large-5 columns">
+<%--        <div class="large-5 columns">
             <h1>lhsdjkl</h1>
         </div>
 
         <div class="large-7 columns">
             <h1>451415</h1>
-        </div>
+        </div>--%>
 
     </div>
 </asp:Content>

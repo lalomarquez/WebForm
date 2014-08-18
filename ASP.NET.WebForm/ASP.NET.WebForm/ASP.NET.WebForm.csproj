@@ -43,7 +43,7 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp">
-      <HintPath>..\..\..\..\..\..\Users\emarquez\Desktop\itextsharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -80,10 +80,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CodeAdmin\insertDataJquery.aspx" />
     <Content Include="CodeAdmin\TablesUser.aspx" />
     <Content Include="CodeAdmin\UserAjax.aspx" />
     <Content Include="CodeAdmin\Users.aspx" />
     <Content Include="Content\datepicker.css" />
+    <Content Include="Files\itextsharp.dll" />
     <Content Include="Files\sql_SCRUD.txt" />
     <Content Include="Home.aspx" />
     <Content Include="Images\favicon.ico" />
@@ -151,6 +153,13 @@
     <Content Include="WSBeginners.asmx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeAdmin\insertDataJquery.aspx.cs">
+      <DependentUpon>insertDataJquery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CodeAdmin\insertDataJquery.aspx.designer.cs">
+      <DependentUpon>insertDataJquery.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CodeAdmin\TablesUser.aspx.cs">
       <DependentUpon>TablesUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

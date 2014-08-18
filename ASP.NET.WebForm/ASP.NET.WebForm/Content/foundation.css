@@ -1162,7 +1162,10 @@ button, .button {
     text-align: right;
     padding-right: 0.75rem; }
   button.radius, .button.radius {
-    border-radius: 3px; }
+    border-radius: 3px;
+    top: 0px;
+    left: 0px;
+}
   button.round, .button.round {
     border-radius: 1000px; }
   button.disabled, button[disabled], .button.disabled, .button[disabled] {

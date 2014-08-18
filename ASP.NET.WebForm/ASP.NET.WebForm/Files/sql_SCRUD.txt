@@ -1,3 +1,14 @@
+create table SCRUD_RegisterUser
+(		   ID int IDENTITY(1,1) NOT NULL,
+           Name nvarchar(30) NOT NULL,
+           LastName nvarchar(50) NOT NULL,
+           Email nvarchar(50) NOT NULL,
+           Company nvarchar(50) NOT NULL,
+           Date nvarchar(20) NOT NULL,
+           Status nvarchar(1) NOT NULL,
+PRIMARY KEY(ID)
+)
+--------------------------------------------------	
 ALTER PROCEDURE SP_SearchRegisterUser
            @Name nvarchar(30)--,
            --@LastName nvarchar(50)--,
