@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BussinesObject
 {
+    [Serializable]
     public class BO_User
     {
         public int ID_User { get; set; }        
@@ -15,5 +16,9 @@ namespace BussinesObject
         public string Company { get; set; }
         public string Date { get; set; }
         public string Status { get; set; }
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

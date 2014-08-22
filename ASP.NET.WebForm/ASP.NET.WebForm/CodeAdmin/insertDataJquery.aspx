@@ -4,15 +4,50 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <script>
-        $(document).ready(function () {
+        $(document).on('ready', function () {
+
+            //Validation Email
+            function isValidEmailAddress(emailAddress) {
+                var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+                return pattern.test(emailAddress);
+            };
+
             $('#btnSave').click(function () {
+                var txtName = $('#<%=textName.ClientID%>').val();
+                var txtLastName = $('#<%=textLastName.ClientID%>').val();
+                var txtEmail = $('#<%=textEmail.ClientID%>').val();
+                var txtCompany = $('#<%=textCompany.ClientID%>').val();
+                var txtDate = $('#<%=textDate.ClientID%>').val();
+                var ddlStatus = $('#<%=ddlStatus.ClientID%>').val();
 
-                var contactName = $('#<%=txtContactName.ClientID%>').val();
-                var contactNo = $('#<%=txtContactNo.ClientID%>').val();
-
-                if (contactName.trim() == "" || contactNo.trim() == "") {
-                    alert("All the fields are required!");
+                if (txtName.trim() == "" ) {
+                    alert("El campo [Name] no debe estar vacio.");
+                    return false;
+                }
+                else if(txtLastName.trim() == ""){
+                    alert("El campo [LastName] no debe estar vacio.");
+                    return false;
+                }
+                else if (txtEmail.trim() == "") {
+                    alert("El campo [Email] no debe estar vacio.");
+                    return false;
+                }
+                else if (!isValidEmailAddress(txtEmail)) {
+                    alert("Ingresda un [Email] valido.");
+                    return false;
+                }
+                else if (txtCompany.trim() == "") {
+                    alert("El campo [Company] no debe estar vacio.");
+                    return false;
+                }
+                else if (txtDate.trim() == "") {
+                    alert("El campo [Date] no debe estar vacio.");
+                    return false;
+                }
+                else if (ddlStatus.trim() == "") {
+                    alert("El campo [Status] no debe estar vacio.");
                     return false;
                 }
 
@@ -20,20 +55,28 @@
 
                 // here call server side function for save data using jquery ajax
                 $.ajax({
-                    url: "insertDataJquery.aspx/SaveData",
+                    url: "/WSBeginners.asmx/SaveData",
                     type: "POST",
                     dataType: "json",
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify({
-                        "contactName": contactName,
-                        "contactNo": contactNo
+                        "Name": txtName,
+                        "LastName": txtLastName,
+                        "Email": txtEmail,
+                        "Company": txtCompany,
+                        "Date": txtDate,
+                        "Status": ddlStatus,
                     }),
                     success: function (data) {
                         if (data.d == "success") {
-                            alert("Data saved successfully");
-                            // clear text here after save complete
-                            $('#<%=txtContactName.ClientID%>').val('');
-                            $('#<%=txtContactNo.ClientID%>').val('');
+                            //alert("Data saved successfully");
+                            alert(JSON.stringify(data));
+                            $('#<%=textName.ClientID%>').val('');
+                            $('#<%=textLastName.ClientID%>').val('');
+                            $('#<%=textEmail.ClientID%>').val('');
+                            $('#<%=textCompany.ClientID%>').val('');
+                            $('#<%=textDate.ClientID%>').val('');
+                            $('#<%=ddlStatus.ClientID%>').val('');
                         }
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
@@ -43,10 +86,15 @@
                     // here hide loading panel as function complete
                     $('#loadingPanel').hide();
                 });
-            });
-        });
+            }); //end Click btn Guardar
+
+        }); //end DOM
     </script>
     <div class="row">
+        <br /><br />
+        <div class="large-12 columns panel radius">
+            <h4>Insert Data Into SQL Server Using jQuery (post method) in ASP.Net</h4>
+        </div>
         <div class="large-5 columns">
             <%--            <div id="divOK" >                
                 <div runat="server" id="divMsg" data-alert class="alert-box success radius">   
@@ -94,39 +142,20 @@
                     <div class="small-3 large-3 columns">
                         <span class="prefix">Status:</span>
                     </div>
-                    <div class="small-9 large-9 columns">
-                        <%--<asp:TextBox ID="textStatus" runat="server" placeholder="you status" />--%>
-                        <asp:DropDownList ID="DDLStatus" runat="server">
+                    <div class="small-9 large-9 columns">                        
+                        <asp:DropDownList ID="ddlStatus" runat="server">
                             <asp:ListItem Value="1">Activo</asp:ListItem>
                             <asp:ListItem Value="0">Inactivo</asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>
-                <asp:Button ID="btnCreateNew" class="small radius button submit" Text="Save" runat="server" OnClick="btnCreateNew_Click" />
+                <input type="button" value="Guardar" id="btnSave" class="small radius button submit" />                
             </fieldset>
         </div>
         <div class="large-7 columns">
-            <h3>Insert Data Into SQL Server Using jQuery (post method) in ASP.Net</h3>
-            <div>
-                <table>
-                    <tr>
-                        <td>Contact Name : </td>
-                        <td>
-                            <asp:TextBox ID="txtContactName" runat="server" Width="200px" /></td>
-                    </tr>
-                    <tr>
-                        <td>Contact No: </td>
-                        <td>
-                            <asp:TextBox ID="txtContactNo" runat="server" Width="200px" /></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <input type="button" value="Submit" id="btnSave" />
-                            <div id="loadingPanel" style="color: green; font-weight: bold; display: none;">Please wait! Data Saving...</div>
-                        </td>
-                    </tr>
-                </table>
+            <br /><br />
+            <div class="panel callout radius">                
+                <div id="loadingPanel" style="color: green; font-weight: bold; display: none;">Please wait! Data Saving...</div>            
             </div>
         </div>
     </div>

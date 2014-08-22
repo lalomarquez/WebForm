@@ -8,6 +8,7 @@ using BussinesObject;
 using DataAccessLayer;
 using BusinessAccessLayer;
 using System.Data;
+using Newtonsoft.Json;
 
 namespace ASP.NET.WebForm.CodeAdmin
 {
@@ -25,32 +26,40 @@ namespace ASP.NET.WebForm.CodeAdmin
         {
             DataTable dt = new DataTable();
             User.Name = textSearch.Text.Trim();
+            
+            WSBeginners ws = new WSBeginners();
+            string str_Json = ws.ShowAllRecords(User.Name);
 
-            try
-            {
-                dt = uBAL.SearchBAL(User);
-                if (dt.Rows.Count > 0)
-                {
-                    GridviewSearch.DataSource = dt;
-                    GridviewSearch.DataBind();
-                }
-                else
-                {
-                    GridviewSearch.EmptyDataText = "<b>No existen registros!</b>";
-                    GridviewSearch.DataSource = null;
-                    GridviewSearch.DataBind();
-                }
-            }
-            catch (Exception ex)
-            {
-                Response.Write("Error: " + ex);
-            }
-            finally
-            {
-                User = null;
-                uBAL = null;
-                codeSnippets.ClearTextBox(Page.Controls);
-            }        
+            dt.Columns.AddRange(new DataColumn[] { new DataColumn("Name"), new DataColumn("Age") });
+
+            //GridviewJson.DataSource = DeserializarJson(str_Json);
+            //GridviewJson.DataBind();
+
+            //try
+            //{
+            //    dt = uBAL.SearchBAL(User);
+            //    if (dt.Rows.Count > 0)
+            //    {
+            //        GridviewSearch.DataSource = dt;
+            //        GridviewSearch.DataBind();
+            //    }
+            //    else
+            //    {
+            //        GridviewSearch.EmptyDataText = "<b>No existen registros!</b>";
+            //        GridviewSearch.DataSource = null;
+            //        GridviewSearch.DataBind();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Response.Write("Error: " + ex);
+            //}
+            //finally
+            //{
+            //    User = null;
+            //    uBAL = null;
+            //    codeSnippets.ClearTextBox(Page.Controls);
+            //}        
         }
         protected void btnCreateNew_Click(object sender, EventArgs e)
         {
@@ -116,7 +125,12 @@ namespace ASP.NET.WebForm.CodeAdmin
                 ds.Dispose();
             }
         }
-
+        public DataTable DeserializarJson(string json)
+        { 
+            DataTable dt = new DataTable();
+            dt = JsonConvert.DeserializeObject<DataTable>(json);
+            return dt;
+        }
 
     }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<BO_User xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ID_User>0</ID_User>
+  <Name>lalo</Name>
+  <LastName>espinosa</LastName>
+  <Email>paco@gmail.com</Email>
+  <Company>escritor</Company>
+  <Date>20.08.2014</Date>
+  <Status>0</Status>
+</BO_User>
