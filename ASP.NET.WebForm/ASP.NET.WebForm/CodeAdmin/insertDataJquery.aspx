@@ -70,7 +70,7 @@
                     success: function (data) {
                         if (data.d == "success") {
                             //alert("Data saved successfully");
-                            alert(JSON.stringify(data));
+                            alert(JSON.stringify(data.d));
                             $('#<%=textName.ClientID%>').val('');
                             $('#<%=textLastName.ClientID%>').val('');
                             $('#<%=textEmail.ClientID%>').val('');

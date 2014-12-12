@@ -21,7 +21,8 @@ namespace ASP.NET.WebForm.CodeAdmin
         {
             FillGridWithFourTier();
             divMsg.Visible = false;
-        }
+            //BindColumnToGridview();
+        }        
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
@@ -29,8 +30,9 @@ namespace ASP.NET.WebForm.CodeAdmin
             
             WSBeginners ws = new WSBeginners();
             string str_Json = ws.ShowAllRecords(User.Name);
+            
 
-            dt.Columns.AddRange(new DataColumn[] { new DataColumn("Name"), new DataColumn("Age") });
+            //dt.Columns.AddRange(new DataColumn[] { new DataColumn("Name"), new DataColumn("Age") });
 
             //GridviewJson.DataSource = DeserializarJson(str_Json);
             //GridviewJson.DataBind();
@@ -69,7 +71,7 @@ namespace ASP.NET.WebForm.CodeAdmin
             User.Email = textEmail.Text.Trim();
             User.Company = textCompany.Text.Trim();
             User.Date = textDate.Text.Trim();            
-            User.Status = DDLStatus.Text;
+            User.Status = ddlStatus.Text;
             //User.Status = textStatus.Text.Trim();
             try
             {
@@ -132,5 +134,20 @@ namespace ASP.NET.WebForm.CodeAdmin
             return dt;
         }
 
+        //private void BindColumnToGridview()
+        //{
+        //    DataTable dt = new DataTable();
+        //    dt.Columns.Add("ID");
+        //    dt.Columns.Add("Nombre");
+        //    dt.Columns.Add("Apellido");
+        //    dt.Columns.Add("Correo");
+        //    dt.Columns.Add("Compañia");
+        //    dt.Columns.Add("Fecha");
+        //    dt.Columns.Add("Estatus");
+        //    dt.Rows.Add();
+        //    GridviewJson.DataSource = dt;
+        //    GridviewJson.DataBind();
+        //    GridviewJson.Rows[0].Visible = false;
+        //}
     }
 }

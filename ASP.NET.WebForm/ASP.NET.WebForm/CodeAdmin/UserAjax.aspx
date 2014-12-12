@@ -6,19 +6,25 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="../Scripts/js/datepicker.js"></script>
     <link href="../Content/datepicker.css" rel="stylesheet" />
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table, td, th {
+            border: 1px solid black;
+        }
+    </style>
     <script type="text/javascript">
         $(document).on('ready', function () { 
-            var name = $('#<%=textSearch.ClientID%>').val();
+            var name = $('#<%=textSearch.ClientID%>').val();            
+
             setTimeout(function(){ 
                 $('#divOK').fadeOut('slow') 
             }, 3000);
 
             //datepicker
             $("#datepicker").datepicker({
-                dateFormat: "dd.mm.yyyy",
-                weekStart: 1
-            });
-            $("#fa-calendar").datepicker({
                 dateFormat: "dd.mm.yyyy",
                 weekStart: 1
             });
@@ -57,7 +63,7 @@
                     <%--<%=DDLStatus.UniqueID %>: {                     
                         selectNone: true
                     }--%>
-                    '<%=DDLStatus.ClientID %>': {                   
+                    '<%=ddlStatus.ClientID %>': {                   
                 selectNone: true
                     }
                     <%--,
@@ -98,56 +104,94 @@
                     }--%>
                 }
             });// end Validate textBox
-
+            
             //Fill GridView AJAX            
             $.ajax({
                 url: "/WSBeginners.asmx/ShowAllRecords",
                 type: "POST",
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({
-                    "Nombre": name
-                }),
-                success: function (data) {
-                    alert(JSON.stringify(data));
-                    alert(JSON.stringify(data.n));
-                    for (var i = 0; i < data.d.length; i++) {
-                        //$("#GridviewJson").append("<tr><td>" + data.d[i].Name + "</td><td>" + data.d[i].LastName + "</td></tr>");
-                        //alert(JSON.stringify(data.d[i].Name));
-                    }                    
+                data: JSON.stringify({ "Nombre": name }),
+                success: function (data) {                                        
+                    var datos = JSON.parse(data.d);    
+                    
+                    var TableContent = "<table >" +
+                              "<tr>" +
+                                  "<td><b>ID</b></td>" +
+                                  "<td><b>Nombre Name</b></td>" +
+                                  "<td><b>Apellidos</b></td>" +
+                                  "<td><b>Correo</b></td>" +
+                                  "<td><b>Compañia</b></td>" +
+                                  "<td><b>Fecha</b></td>" +
+                                  "<td><b>Estatus</b></td>" +
+                              "</tr>";
+                    for (var i = 0; i < datos.length; i++) {                                                
+                        TableContent += "<tr>" +
+                                                "<td>"+ datos[i].ID_User +"</td>" +
+                                                "<td>"+ datos[i].Name+"</td>" +
+                                                "<td>"+ datos[i].LastName+"</td>" +
+                                                "<td>"+ datos[i].Email+"</td>" +
+                                                "<td>"+ datos[i].Company+"</td>" +
+                                                "<td>"+ datos[i].Date+"</td>" +
+                                                "<td>"+ datos[i].Status+"</td>" +
+                                            "</tr>";
+                    }
+                    TableContent += "</table>";
+                    $("#UpdatePanel").html(TableContent);
+                
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert(thrownError);
                 }
             });
 
+            $('#btnSave').click(function () {
+                var txtName = $('#<%=textName.ClientID%>').val();
+                var txtLastName = $('#<%=textLastName.ClientID%>').val();
+                var txtEmail = $('#<%=textEmail.ClientID%>').val();
+                var txtCompany = $('#<%=textCompany.ClientID%>').val();
+                var txtDate = $('#<%=textDate.ClientID%>').val();
+                var ddlStatus = $('#<%=ddlStatus.ClientID%>').val();
+                $('#loadingPanel').show();
+                
+                $.ajax({
+                    url: "/WSBeginners.asmx/SaveData",
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({
+                        "Name": txtName,
+                        "LastName": txtLastName,
+                        "Email": txtEmail,
+                        "Company": txtCompany,
+                        "Date": txtDate,
+                        "Status": ddlStatus,
+                    }),
+                    success: function (data) {
+                        if (data.d == "success") {
+                            //alert("Data saved successfully");
+                            alert(JSON.stringify(data));
+                            $('#<%=textName.ClientID%>').val('');
+                            $('#<%=textLastName.ClientID%>').val('');
+                            $('#<%=textEmail.ClientID%>').val('');
+                            $('#<%=textCompany.ClientID%>').val('');
+                            $('#<%=textDate.ClientID%>').val('');
+                            $('#<%=ddlStatus.ClientID%>').val('');
+                        }
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(thrownError);
+                    }
+                }).done(function () {                    
+                    $('#loadingPanel').hide();
+                });
+            }); //end Click btn Guardar
+
         });// end DOM
     </script>
-<%--    <div class="row">        
-            <div class="large-5 columns">
-                <p>
-                    <input id="datepicker" type="text">
-                </p>
-              <div class="row collapse">
-                <div class="small-9 columns">
-                  <input type="text" datepicker data-trigger="#show-datepicker">
-                </div>
-                <div class="small-3 columns">                    
-                  <span class="postfix radius">
-                      <i class="fa fa-calendar"></i>		
-                  </span>
-                </div>
-              </div>
-            </div>
-        </div>    --%>
 
     <div class="row">        
         <div class="large-5 columns">
-<%--            <div id="BodyField">
-                <div class="video-field-new">
-                    <h1>hola mundo</h1>
-                </div>
-            </div>--%>
             <fieldset class="form panel callout radius">
                 <legend>Search Users</legend>
                 <div class="row collapse">
@@ -164,10 +208,9 @@
 
         <div class="large-7 columns">
             <fieldset class="panel radius">
-                <legend>List Users</legend>            
-                    <%--<asp:GridView ID="GridviewSearch" runat="server" HeaderStyle-CssClass="panel callout radius"></asp:GridView>       --%>
+                <legend>List Users</legend>                                
                 <br />
-                    <asp:GridView ID="GridviewJson" runat="server"></asp:GridView>     
+                <div id="UpdatePanel"></div>                     
             </fieldset>            
         </div>
 
@@ -219,9 +262,8 @@
                     <div class="small-3 large-3 columns">
                         <span class="prefix">Status:</span>
                     </div>
-                    <div class="small-9 large-9 columns">
-                        <%--<asp:TextBox ID="textStatus" runat="server" placeholder="you status" />--%>
-                        <asp:DropDownList ID="DDLStatus" runat="server">
+                    <div class="small-9 large-9 columns">                        
+                        <asp:DropDownList ID="ddlStatus" runat="server">
                             <asp:ListItem Value="1">Activo</asp:ListItem>
                             <asp:ListItem Value="0">Inactivo</asp:ListItem>
                         </asp:DropDownList>
@@ -237,15 +279,63 @@
                 <asp:GridView ID="GridViewFourTier" runat="server" HeaderStyle-CssClass="panel callout radius"></asp:GridView>
             </fieldset>
         </div>
-        <%--<div class="large-12 columns"></div>--%>
+        
+        <div class="large-5 columns">
+            <fieldset class="form panel callout radius">
+                <legend>Create User</legend>
+                <div class="row collapse">
+                    <div class="small-3 large-3 columns">
+                        <span class="prefix">Name:</span>
+                    </div>
+                    <div class="small-9 large-9 columns">
+                        <asp:TextBox ID="TextBox1" runat="server" placeholder="you name" />
+                    </div>
 
-<%--        <div class="large-5 columns">
-            <h1>lhsdjkl</h1>
+                    <div class="small-3 large-3 columns">
+                        <span class="prefix">LastName:</span>
+                    </div>
+                    <div class="small-9 large-9 columns">
+                        <asp:TextBox ID="TextBox2" runat="server" placeholder="you lastname" />
+                    </div>
+                    <div class="small-3 large-3 columns">
+                        <span class="prefix">Email:</span>
+                    </div>
+                    <div class="small-9 large-9 columns">
+                        <asp:TextBox ID="TextBox3" runat="server" placeholder="you email" />
+                    </div>
+
+                    <div class="small-3 large-3 columns">
+                        <span class="prefix">Company:</span>
+                    </div>
+                    <div class="small-9 large-9 columns">
+                        <asp:TextBox ID="TextBox4" runat="server" placeholder="you company" />
+                    </div>
+
+                    <div class="small-3 large-3 columns">
+                        <span class="prefix">Brithday:</span>
+                    </div>
+                    <div class="small-9 large-9 columns">
+                        <asp:TextBox ID="TextBox5" runat="server" placeholder="you brithday" />
+                    </div>
+
+                    <div class="small-3 large-3 columns">
+                        <span class="prefix">Status:</span>
+                    </div>
+                    <div class="small-9 large-9 columns">                        
+                        <asp:DropDownList ID="DropDownList1" runat="server">
+                            <asp:ListItem Value="1">Activo</asp:ListItem>
+                            <asp:ListItem Value="0">Inactivo</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                <input type="button" value="Guardar" id="btnSave" class="small radius button submit" />                
+            </fieldset>
         </div>
-
         <div class="large-7 columns">
-            <h1>451415</h1>
-        </div>--%>
-
-    </div>
+            <br /><br />
+            <div class="panel callout radius">                
+                <div id="loadingPanel" style="color: green; font-weight: bold; display: none;">Please wait! Data Saving...</div>            
+            </div>
+        </div>    	
+        </div>    
 </asp:Content>

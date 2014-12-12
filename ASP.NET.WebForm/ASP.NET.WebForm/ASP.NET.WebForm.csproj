@@ -83,9 +83,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CodeAdmin\insertDataJquery.aspx" />
+    <Content Include="CodeAdmin\ScrudAjax.aspx" />
     <Content Include="CodeAdmin\TablesUser.aspx" />
     <Content Include="CodeAdmin\UserAjax.aspx" />
     <Content Include="CodeAdmin\Users.aspx" />
+    <Content Include="CodesCSharp\SaveImage.aspx" />
     <Content Include="CodesCSharp\Serializacion.aspx" />
     <Content Include="Content\datepicker.css" />
     <Content Include="Files\itextsharp.dll" />
@@ -163,6 +165,13 @@
     <Compile Include="CodeAdmin\insertDataJquery.aspx.designer.cs">
       <DependentUpon>insertDataJquery.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CodeAdmin\ScrudAjax.aspx.cs">
+      <DependentUpon>ScrudAjax.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CodeAdmin\ScrudAjax.aspx.designer.cs">
+      <DependentUpon>ScrudAjax.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CodeAdmin\TablesUser.aspx.cs">
       <DependentUpon>TablesUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -183,6 +192,13 @@
     </Compile>
     <Compile Include="CodeAdmin\Users.aspx.designer.cs">
       <DependentUpon>Users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CodesCSharp\SaveImage.aspx.cs">
+      <DependentUpon>SaveImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CodesCSharp\SaveImage.aspx.designer.cs">
+      <DependentUpon>SaveImage.aspx</DependentUpon>
     </Compile>
     <Compile Include="CodesCSharp\Serializacion.aspx.cs">
       <DependentUpon>Serializacion.aspx</DependentUpon>
@@ -245,6 +261,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="fonts\" />
     <Folder Include="Models\" />
+    <Folder Include="UploadImages\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

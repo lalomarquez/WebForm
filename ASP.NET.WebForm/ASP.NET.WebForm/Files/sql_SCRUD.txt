@@ -109,4 +109,36 @@ BEGIN
 END
 --------------------------------------------------
 EXEC SP_GetUsersByID 71
+**********************************************************************
+CREATE TABLE Images
+(
+	ID INT IDENTITY(1,1) NOT NULL,
+	ImageURL NVARCHAR(100) NOT NULL,
+	Fecha SMALLDATETIME NOT NULL,
+	PRIMARY KEY(ID)
+)
 --------------------------------------------------
+CREATE PROCEDURE SP_SaveImage
+           @ImageURL NVARCHAR(100),
+           @Fecha SMALLDATETIME
+AS   
+BEGIN        
+		INSERT INTO [Pruebas].[dbo].[Images]
+				   ([ImageURL]
+				   ,[Fecha])
+			 VALUES(
+				   @ImageURL,
+				   @Fecha)
+END
+--------------------------------------------------
+DECLARE @Fecha SMALLDATETIME = GETDATE()
+EXEC SP_SaveImage 'PATH/URL', @Fecha
+
+SELECT * FROM Images 
+DELETE FROM Images 
+
+--RESERT ID to 0
+DBCC CHECKIDENT ([Images], RESEED,0)
+
+
+

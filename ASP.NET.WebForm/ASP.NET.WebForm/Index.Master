@@ -9,27 +9,27 @@
     <meta name="description" content="Portafolio" />
     <meta name="author" content="Eduardo" />
     <title></title>
-    
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <!-- CSS -->
     <!-- favicon  -->
-    <link href="Images/favicon.ico" rel="shortcut icon" />        
+    <link href="Images/favicon.ico" rel="shortcut icon" />
     <!-- core framework Foundation -->
     <link href="Content/foundation.css" rel="stylesheet" />
-    <!-- css elements jquery CDN-->    
-    <link href="<%=ResolveClientUrl("//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/flick/jquery-ui.min.css")%>" rel="stylesheet" type="text/css" />        
+    <!-- css elements jquery CDN-->
+    <link href="<%=ResolveClientUrl("//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/flick/jquery-ui.min.css")%>" rel="stylesheet" type="text/css" />
     <!-- Fonts google-->
-    <link href='http://fonts.googleapis.com/css?family=Prosto+One' rel='stylesheet' type='text/css'/>	
-	<link href='http://fonts.googleapis.com/css?family=Gafata' rel='stylesheet' type='text/css'/>	
-	<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'/>
+    <link href='http://fonts.googleapis.com/css?family=Prosto+One' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Gafata' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css' />
     <!-- Font-awesome Icons -->
-    <link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'/>
+    <link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' rel='stylesheet' type='text/css' />
 
     <style type="text/css">
-        b {
-            font: 400 20px/1 'Gafata', Helvetica, sans-serif;		
-        }
+        /*b{
+            font: 400 20px/1 'Gafata', Helvetica, sans-serif;
+        }*/
         .ui-datepicker {
             font-size: 11pt !important;
         }
@@ -46,37 +46,47 @@
             color: #fff;
         }
     </style>
-        
+
     <!-- LOAD .js -->
     <!-- Load core jQuery from Google CDN -->
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>    
-    <!-- Load core jQuery from a local copy if loading from Google fails -->    
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Load core jQuery from a local copy if loading from Google fails -->
     <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="<%=ResolveClientUrl("~/Scripts/js/jquery-1.11.1.js")%>"><\/script>')</script>
 
     <!-- scripts for elements UI of jquery from CDN-->
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>    
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
     <!-- Load script Foundation -->
     <script src="<%=ResolveClientUrl("~/Scripts/js/foundation.min.js")%>" type="text/javascript"></script>
     <script src="<%=ResolveClientUrl("~/Scripts/js/vendor/modernizr.js")%>" type="text/javascript"></script>
 
-    <!-- scripts for validate  -->	        
+    <!-- scripts for validate  -->
     <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
     <script src="<%=ResolveClientUrl("~/Scripts/js/jquery.validation.net.webforms.js")%>" type="text/javascript"></script>
+
+    <noscript>
+           <div class="row">
+                <div class="large-12 columns">
+                    <div class="panel radius">
+                        <h3 class="text-center">Para que esta pagina funcione correctamente se requiere que JavaScript se encuentre habilitado!</h3>
+                    </div>
+                </div>
+           </div>
+    </noscript>
 </head>
 
 <body>
     <form id="form1" runat="server">
         <nav class="top-bar" data-topbar>
             <ul class="title-area">
-                
+
                 <li class="name">
                     <h1>
                         <a href="<%=ResolveClientUrl("~/Home.aspx")%>">Top Bar Title</a>
                     </h1>
                 </li>
                 <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
-                    
+
             </ul>
 
             <section class="top-bar-section">
@@ -87,43 +97,51 @@
                         <a href="#">Codes </a>
                         <ul class="dropdown">
 
-                            <li><label>Section Name</label></li>
+                            <li>
+                                <label>Section Name</label></li>
                             <li class="has-dropdown">
                                 <a href="#" class="">Codes CSharp</a>
                                 <ul class="dropdown">
-                                    <li><asp:LinkButton ID="linkSendEmail" runat="server" OnClick="linkSendEmail_Click" CausesValidation="False">Send Email with PDF</asp:LinkButton></li>    
-                                    <li><a href="#">Other</a></li>                                                                        
+                                    <li>
+                                        <asp:LinkButton ID="linkSendEmail" runat="server" OnClick="linkSendEmail_Click" CausesValidation="False">Send Email with PDF</asp:LinkButton></li>
+                                    <li><a href="#">Other</a></li>
                                 </ul>
                             </li>
 
                             <li class="divider"></li>
 
-                            <li><label>Section Name</label></li>
+                            <li>
+                                <label>Section Name</label></li>
                             <li class="has-dropdown">
                                 <a href="#">Codes WS</a>
-                                <ul class="dropdown">                                                                    
-                                    <li><asp:LinkButton ID="linkConsumingWS" runat="server" OnClick="linkConsumingWS_Click" CausesValidation="False">Consuming WS</asp:LinkButton></li>                                      
-                                    <li><a href="#">Other</a></li>                                                                        
+                                <ul class="dropdown">
+                                    <li>
+                                        <asp:LinkButton ID="linkConsumingWS" runat="server" OnClick="linkConsumingWS_Click" CausesValidation="False">Consuming WS</asp:LinkButton></li>
+                                    <li><a href="#">Other</a></li>
                                     <li class="divider"></li>
                                 </ul>
-                            </li> 
-                                                       
+                            </li>
+
                         </ul>
                     </li>
                     <li class="divider"></li>
                     <li class="has-dropdown">
                         <a href="#">VB.Net</a>
-                        <ul class="dropdown">                            
-                            <li><asp:LinkButton ID="linkDB10" runat="server" OnClick="linkDB10_Click" CausesValidation="False">DVB10</asp:LinkButton></li>
+                        <ul class="dropdown">
+                            <li>
+                                <asp:LinkButton ID="linkDB10" runat="server" OnClick="linkDB10_Click" CausesValidation="False">DVB10</asp:LinkButton></li>
                         </ul>
                     </li>
                     <li class="divider"></li>
                     <li class="has-dropdown">
                         <a href="#">Admin</a>
-                        <ul class="dropdown">                                                                                    
-                            <li><asp:LinkButton ID="linkTableUser" runat="server" OnClick="linkTableUser_Click" CausesValidation="False">Table Users</asp:LinkButton></li>
-                            <li><asp:LinkButton ID="linkUsers" runat="server" OnClick="linkUsers_Click" CausesValidation="False">SCRUD Users</asp:LinkButton></li>
-                            <li><asp:LinkButton ID="linkUsersAjax" runat="server" OnClick="linkUsersAjax_Click" CausesValidation="False">SCRUD Users AJAX</asp:LinkButton></li>
+                        <ul class="dropdown">
+                            <li>
+                                <asp:LinkButton ID="linkTableUser" runat="server" OnClick="linkTableUser_Click" CausesValidation="False">Table Users</asp:LinkButton></li>
+                            <li>
+                                <asp:LinkButton ID="linkUsers" runat="server" OnClick="linkUsers_Click" CausesValidation="False">SCRUD Users</asp:LinkButton></li>
+                            <li>
+                                <asp:LinkButton ID="linkUsersAjax" runat="server" OnClick="linkUsersAjax_Click" CausesValidation="False">SCRUD Users AJAX</asp:LinkButton></li>
                             <li class="divider"></li>
                             <li><a href="#">See all →</a></li>
                         </ul>
@@ -141,7 +159,7 @@
             <div class="large-12 columns">
                 <hr />
                 <div class="row">
-                    <div class="large-6 columns">                        
+                    <div class="large-6 columns">
                         <p class="text-left ">
                             &copy;Copyright Company
                             <script type="text/javascript">document.write(new Date().getFullYear());</script>
@@ -153,7 +171,7 @@
                         <ul class="inline-list right">
                             <li><a href="#">Link 1</a></li>
                             <li><a href="#">Link 2</a></li>
-                            <li><a href="#">Link 3</a></li>                            
+                            <li><a href="#">Link 3</a></li>
                         </ul>
                     </div>
                 </div>
@@ -161,8 +179,8 @@
         </footer>
 
     </form>
-</body>   
-        <script type="text/javascript">
-            $(document).foundation();
+    <script type="text/javascript">
+        $(document).foundation();
     </script>
+</body>
 </html>

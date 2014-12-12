@@ -50,7 +50,7 @@ namespace ASP.NET.WebForm.CodeAdmin
                 }
                 finally
                 {
-                    reader.Close();
+                    //reader.Close();
                     conn.Close();
                     cmd.Dispose();
                 }

@@ -10,6 +10,8 @@ using DAL = DataAccessLayer;
 using BAL = BusinessAccessLayer;
 using System.Configuration;
 using Newtonsoft.Json;
+using System.Web.Script.Services;
+using System.Text;
 
 namespace ASP.NET.WebForm
 {
@@ -30,7 +32,7 @@ namespace ASP.NET.WebForm
         {
             return "Hello World";
         }
-        
+
         [WebMethod]
         public string Food(string items)
         {
@@ -42,7 +44,7 @@ namespace ASP.NET.WebForm
         {
             return n1 + n2;
         }
-        
+
         [WebMethod]
         public BO.BO_User Usuarios(int ID)
         {
@@ -57,7 +59,7 @@ namespace ASP.NET.WebForm
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ID", SqlDbType.Int).Value = ID;
                     BO.BO_User Usuarios = new BO.BO_User();
-                    
+
                     if (conn.State == ConnectionState.Closed)
                         conn.Open();
 
@@ -78,53 +80,133 @@ namespace ASP.NET.WebForm
                 {
                     throw ex;
                 }
-            }            
+            }
         }
-     
+
         [WebMethod]
         public string GetCurrentTime(string name)
         {
             return "Hello " + name + Environment.NewLine + "The Current Time is: "
                 + DateTime.Now.ToString();
         }
-        
-        [WebMethod]
+
+        [WebMethod(Description = "Insert Data to DB")]
         public string SaveData(string Name, string LastName, string Email, string Company, string Date, string Status)
         {
             string status = string.Empty;
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connString"].ConnectionString);
             SqlCommand cmd;
             
-            //User.Name = Name;
-            //User.LastName = LastName;
-            //User.Email = Email;
-            //User.Company = Company;
-            //User.Date = Date;
-            //User.Status = Status;
+            if (codeSnippets.esNombre(Name.Trim()) == true)
+            {
+                if (codeSnippets.esNombre(LastName.Trim()) == true)
+                {
+                    if (codeSnippets.esCorreo(Email.Trim()) == true)
+                    {
+                        if (codeSnippets.esAlfanumerico(Company.Trim()) == true)
+                        {
+                            if (codeSnippets.esFecha(Date.Trim()) == true)
+                            {
+                                if (codeSnippets.esUnNumero(Status.Trim()) == true)
+                                {
+                                    try
+                                    {
+                                        cmd = new SqlCommand("[SP_InsertRegisterUser]", conn);
+                                        cmd.CommandType = CommandType.StoredProcedure;
+                                        cmd.Parameters.AddWithValue("@Name", SqlDbType.NVarChar).Value = Name;
+                                        cmd.Parameters.AddWithValue("@LastName", SqlDbType.NVarChar).Value = LastName;
+                                        cmd.Parameters.AddWithValue("@Email", SqlDbType.NVarChar).Value = Email;
+                                        cmd.Parameters.AddWithValue("@Company", SqlDbType.NVarChar).Value = Company;
+                                        cmd.Parameters.AddWithValue("@Date", SqlDbType.NVarChar).Value = Date;
+                                        cmd.Parameters.AddWithValue("@Status", SqlDbType.NVarChar).Value = Status;
+
+                                        if (conn.State == ConnectionState.Closed)
+                                            conn.Open();
+
+                                        int insert = cmd.ExecuteNonQuery();
+                                        cmd.Dispose();
+
+                                        if (insert > 0)
+                                            status = "success";
+                                        else
+                                            status = "failed";
+
+                                        return status;
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        throw ex;
+                                    }
+                                    finally
+                                    {
+                                        if (conn.State != ConnectionState.Closed)
+                                        {
+                                            conn.Close();
+                                            conn.Dispose();
+                                        }                                           
+                                    }
+                                }
+                                else {
+                                    System.Windows.Forms.MessageBox.Show("Plis, ingresa un Estatus valido");
+                                    return status = "failed";
+                                }
+                            }
+                            else {
+                                System.Windows.Forms.MessageBox.Show("Plis, ingresa una Fecha valida(dd/mm/yyyy,dd-mm-yyyy o dd.mm.yyyy)");
+                                return status = "failed";
+                            }
+                        }
+                        else{
+                            System.Windows.Forms.MessageBox.Show("Plis, ingresa una Empresa valida");
+                            return status = "failed";
+                        }
+                    }
+                    else {
+                        System.Windows.Forms.MessageBox.Show("Plis, ingresa un Correo valido");
+                        return status = "failed";
+                    }
+                }
+                else {
+                    System.Windows.Forms.MessageBox.Show("Plis, ingresa un Apellido valido");
+                    return status = "failed";
+                }
+            }
+            else{
+                System.Windows.Forms.MessageBox.Show("Plis, ingresa un Nombre valido");
+                return status = "failed";
+            }
+                
+        }
+
+        [WebMethod]
+        public string ShowAllRecords(string Nombre)
+        {
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connString"].ConnectionString);
+            SqlCommand cmd;
+            SqlDataAdapter adp;
+            DataTable dt = new DataTable();
+            string json = string.Empty;
 
             try
             {
-                cmd = new SqlCommand("[SP_InsertRegisterUser]", conn);
+                cmd = new SqlCommand("[SP_SearchRegisterUser]", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Name", SqlDbType.NVarChar).Value = Name;
-                cmd.Parameters.AddWithValue("@LastName", SqlDbType.NVarChar).Value = LastName;
-                cmd.Parameters.AddWithValue("@Email", SqlDbType.NVarChar).Value = Email;
-                cmd.Parameters.AddWithValue("@Company", SqlDbType.NVarChar).Value = Company;
-                cmd.Parameters.AddWithValue("@Date", SqlDbType.NVarChar).Value = Date;
-                cmd.Parameters.AddWithValue("@Status", SqlDbType.NVarChar).Value = Status;
+                cmd.Parameters.AddWithValue("@Name", SqlDbType.NVarChar).Value = Nombre;
+                adp = new SqlDataAdapter(cmd);
+                adp.Fill(dt);
 
+                //foreach (DataRow row in dt.Rows)
+                //{                    
+                //    BO.BO_User User = new BO.BO_User();
+                //    User.Name = row["Name"].ToString();
+                //    User.LastName = row["LastName"].ToString();   
+                //}
+
+                cmd.Dispose();
                 if (conn.State == ConnectionState.Closed)
                     conn.Open();
 
-                int insert = cmd.ExecuteNonQuery();
-                cmd.Dispose();
-
-                if (insert > 0)
-                    status = "success";
-                else
-                    status = "failed";
-
-                return status;
+                return json = JsonConvert.SerializeObject(dt, Formatting.Indented);
             }
             catch (Exception ex)
             {
@@ -140,55 +222,20 @@ namespace ASP.NET.WebForm
             }
         }
 
-        [WebMethod]
-        public string ShowAllRecords(string Nombre)
-        {
-            string json = string.Empty;
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["connString"].ConnectionString);
-            SqlCommand cmd;
-            SqlDataAdapter adp;
-            
-            DataTable dt = new DataTable();
+        //[WebMethod]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        //public static List<BO.BO_User> GetCompanies()
+        //{
+        //    System.Threading.Thread.Sleep(5000);
+        //    List<BO.BO_User> allCompany = new List<BO.BO_User>();
 
-            try
-            {
-                cmd = new SqlCommand("[SP_SearchRegisterUser]", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Name", SqlDbType.NVarChar).Value = Nombre;
-                adp = new SqlDataAdapter(cmd);
-                adp.Fill(dt);
 
-                foreach (DataRow row in dt.Rows)
-                {
-                    //Details detobj = new Details();
-                    BO.BO_User User = new BO.BO_User();
-                    User.Name = row["Name"].ToString();
-
-                    //detobj.id = Convert.ToInt32(row["id"].ToString());
-                    //detobj.GraduatedYear = row["GraduatedYear"].ToString();
-                    //detobj.SchoolName = row["SchoolName"].ToString();
-                    //list.Add(detobj);
-                }
-
-                cmd.Dispose();
-                if (conn.State == ConnectionState.Closed)
-                    conn.Open();
-
-                return json = JsonConvert.SerializeObject(dt, Formatting.Indented);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally 
-            {
-                if (conn.State != ConnectionState.Closed)
-                {
-                    conn.Close();
-                    conn.Dispose();
-                }
-            }            
-        }
+        //    using (MyDatabaseEntities dc = new MyDatabaseEntities())
+        //    {
+        //        allCompany = dc.TopCompanies.ToList();
+        //    }
+        //    return allCompany;
+        //}
 
 
     }

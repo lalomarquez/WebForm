@@ -41,6 +41,11 @@ namespace ASP.NET.WebForm
             Regex regex = new Regex(@"^[0-9]+$");
             return regex.IsMatch(cadena);
         }
+        public static Boolean esUnNumero(string cadena)
+        {
+            Regex regex = new Regex(@"^[0-1]{1}$");
+            return regex.IsMatch(cadena);
+        }
         private static bool esDecimal(string cadena)
         {
             Regex regex = new Regex(@"^[0-9]{1,9}([\.\,][0-9]{1,3})?$");
@@ -55,6 +60,11 @@ namespace ASP.NET.WebForm
         {
             Regex expresion = new Regex(@"^\w+$");
             return expresion.IsMatch(cadena);
+        }
+        public static Boolean esNombre(string cadena)
+        {
+            Regex regex = new Regex(@"^[A-Za-záéíóúñ]{2,}([\s][A-Za-záéíóúñ]{2,})*$");
+            return regex.IsMatch(cadena);
         }
         public static Boolean esCorreo(string cadena)
         {            
@@ -75,11 +85,17 @@ namespace ASP.NET.WebForm
             //       Invalid: js@proseware.com9 
             //       Valid: j.s@server1.proseware.com
         }
-        private static bool esUrl(string cadena)
+        public static Boolean esUrl(string cadena)
         {
             Regex regex = new Regex(@"^[a-zA-Z0-9\-\.]+\.(com|org|net|mil|edu|COM|ORG|NET|MIL|EDU)$");
             return regex.IsMatch(cadena);
-        }   
+        }
+        public static Boolean esFecha(string cadena)
+        {            
+            Regex regex = new Regex(@"^\d{1,2}\/\d{1,2}\/\d{2,4}|\d{1,2}\-\d{1,2}\-\d{2,4}|\d{1,2}\.\d{1,2}\.\d{2,4}$");
+            return regex.IsMatch(cadena);
+            //dd/mm/yyyy,dd-mm-yyyy or dd.mm.yyyy
+        }        
         public static string onlyletras(string cadena)
         {
             Regex expresion = new Regex("^[A-Za-z]+$");
